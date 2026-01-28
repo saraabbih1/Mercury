@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\contactController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +21,4 @@ Route::get('/', function () {
 });
 Route::resource('groups', GroupController::class);
 
+Route::resource('contacts', contactController::class);
