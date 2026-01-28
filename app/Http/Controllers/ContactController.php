@@ -9,6 +9,7 @@ class ContactController extends Controller
 {
    public function index(Request $request)
 {
+    $request->validate(['search'=>'nullable|regex:/[A-Za-z\s]+$/']);
     $query = Contact::query();
 
     if ($request->filled('search')) {
