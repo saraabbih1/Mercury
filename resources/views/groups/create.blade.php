@@ -25,7 +25,7 @@
     <button type="submit">Ajouter</button>
 </form>
 
-<a href="{{ route('groups.index') }}">🔙 Retour à la liste</a>
+<a href="{{ route('groups.index') }}"><- Retour à la liste</a>
 
 </body>
 </html>
