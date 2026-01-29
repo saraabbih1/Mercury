@@ -49,14 +49,14 @@
 
         <button 
             type="submit"
-            style="background-color:#4CAF50; color:white; border:none; padding:10px; width:100%; border-radius:5px; cursor:pointer;"
+            style="background-color:#112b80; color:white; border:none; padding:10px; width:100%; border-radius:5px; cursor:pointer;"
         >
             Modifier
         </button>
     </form>
 
     <a href="{{ route('contacts.index') }}" 
-       style="display:block; text-align:center; margin-top:15px; text-decoration:none; color:#4CAF50;">
+       style="display:block; text-align:center; margin-top:15px; text-decoration:none; color:#0d1d50;">
        ← Retour à la liste
     </a>
 

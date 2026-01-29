@@ -24,12 +24,12 @@
            style="width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ccc;">
 
     <button type="submit" 
-            style="width:100%; padding:10px; border:none; border-radius:5px; background-color:#4CAF50; color:white; font-weight:bold; cursor:pointer;">
+            style="width:100%; padding:10px; border:none; border-radius:5px; background-color:#0d1d50; color:white; font-weight:bold; cursor:pointer;">
         Enregistrer
     </button>
 </form>
 
 <div style="text-align:center; margin-top:20px;">
     <a href="{{ route('contacts.index') }}" 
-       style="color:#4CAF50; text-decoration:none;">← Retour aux contacts</a>
+       style="color:#0d1d50; text-decoration:none;">← Retour aux contacts</a>
 </div>

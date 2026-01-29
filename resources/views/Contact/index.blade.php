@@ -9,7 +9,7 @@
 <!-- Bouton Ajouter contact centré -->
 <div style=" margin-bottom:20px;">
     <a href="{{ route('contacts.create') }}" 
-       style="background-color:#4CAF50; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
+       style="background-color:#112b80; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
        + Ajouter contact
     </a>
 </div>
@@ -25,7 +25,7 @@
             style="padding:5px; border-radius:5px; border:1px solid #ccc;"
         >
         <button type="submit" 
-            style="padding:5px 10px; border:none; background-color:#4CAF50; color:white; border-radius:5px; cursor:pointer;">
+            style="padding:5px 10px; border:none; background-color:#112b80; color:white; border-radius:5px; cursor:pointer;">
             Rechercher
         </button>
     </form>
