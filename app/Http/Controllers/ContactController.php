@@ -3,35 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-   public function index(Request $request)
-{
-    $request->validate(['search'=>'nullable|regex:/[A-Za-z\s]+$/']);
-    $query = Contact::query();
+    public function index(Request $request)
+    {
+        $groups = Group::all();
 
-    if ($request->filled('search')) {
-        $query->where('name', 'like', '%' . $request->search . '%');
+        $query = Contact::with('group');
+
+        // Filtrage par group
+        if ($request->filled('group_id')) {
+            $query->where('group_id', $request->group_id);
+        }
+
+        // Filtrage par search (optionnel)
+        if ($request->filled('search')) {
+            $request->validate(['search'=>'nullable|regex:/[A-Za-z\s]+$/']);
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $contacts = $query->get();
+
+        return view('contact.index', compact('contacts', 'groups'));
     }
-
-    $contacts = $query->get();
-
-    return view('contact.index', compact('contacts'));
-}
 
     public function create()
     {
-        return view('contact.create');
+        $groups = Group::all();
+        return view('contact.create', compact('groups'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required',
-            'email' => 'required|email',
-            'phone' => 'required'
+            'name'     => 'required',
+            'email'    => 'required|email',
+            'phone'    => 'required',
+            'group_id' => 'required|exists:groups,id'
         ]);
 
         Contact::create($request->all());
@@ -42,15 +53,17 @@ class ContactController extends Controller
 
     public function edit(Contact $contact)
     {
-        return view('contact.edit', compact('contact'));
+        $groups = Group::all();
+        return view('contact.edit', compact('contact', 'groups'));
     }
 
     public function update(Request $request, Contact $contact)
     {
         $request->validate([
-            'name'  => 'required',
-            'email' => 'required|email',
-            'phone' => 'required'
+            'name'     => 'required',
+            'email'    => 'required|email',
+            'phone'    => 'required',
+            'group_id' => 'required|exists:groups,id'
         ]);
 
         $contact->update($request->all());
