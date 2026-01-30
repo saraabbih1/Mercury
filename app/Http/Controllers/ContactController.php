@@ -16,8 +16,11 @@ class ContactController extends Controller
 
         // Filtrage par group
         if ($request->filled('group_id')) {
-            $query->where('group_id', $request->group_id);
-        }
+    $query->whereHas('group', function ($q) use ($request) {
+        $q->where('id', $request->group_id);
+    });
+}
+
 
         // Filtrage par search (optionnel)
         if ($request->filled('search')) {
