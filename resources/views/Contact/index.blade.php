@@ -20,7 +20,7 @@
         >
 
         <select name="group_id" style="padding:5px; border-radius:5px; border:1px solid #ccc;">
-            <option value="">-- Tous les groupes --</option>
+            <option value=""> Tous les groupes </option>
             @foreach($groups as $group)
                 <option value="{{ $group->id }}" {{ request('group_id') == $group->id ? 'selected' : '' }}>
                     {{ $group->name }}
@@ -54,7 +54,7 @@
             <th style="padding:10px; border-bottom:1px solid #ddd;">Nom</th>
             <th style="padding:10px; border-bottom:1px solid #ddd;">Email</th>
             <th style="padding:10px; border-bottom:1px solid #ddd;">Téléphone</th>
-            <th style="padding:10px; border-bottom:1px solid #ddd;">Groupe</th> <!-- Nouveau -->
+            <th style="padding:10px; border-bottom:1px solid #ddd;">Groupe</th> 
             <th style="padding:10px; border-bottom:1px solid #ddd;">Actions</th>
         </tr>
     </thead>
@@ -64,7 +64,7 @@
         <td style="padding:8px; border-bottom:1px solid #ddd;">{{ $contact->name }}</td>
         <td style="padding:8px; border-bottom:1px solid #ddd;">{{ $contact->email }}</td>
         <td style="padding:8px; border-bottom:1px solid #ddd;">{{ $contact->phone }}</td>
-        <td style="padding:8px; border-bottom:1px solid #ddd;">{{ $contact->group->name ?? '—' }}</td> <!-- Nouveau -->
+        <td style="padding:8px; border-bottom:1px solid #ddd;">{{ $contact->group->name ?? 'walo grop?' }}</td> 
         <td style="padding:8px; border-bottom:1px solid #ddd;">
             <a href="{{ route('contacts.edit', $contact) }}" 
                style="color:#ffa007; margin-right:10px;">Modifier</a>

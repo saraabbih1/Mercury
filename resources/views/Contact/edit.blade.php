@@ -48,7 +48,7 @@
         >
     <label style="display:block; margin-bottom:5px;">Groupe :</label>
         <select name="group_id" style="width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
-            <option value="">-- Choisir un groupe --</option>
+            <option value=""> Choisir un groupe </option>
             @foreach($groups as $group)
                 <option value="{{ $group->id }}" {{ old('group_id', $contact->group_id) == $group->id ? 'selected' : '' }}>
                     {{ $group->name }}
