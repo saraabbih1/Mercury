@@ -6,13 +6,7 @@
     </div>
 @endif
 
-<!-- Bouton Ajouter contact centré -->
-<div style=" margin-bottom:20px;">
-    <a href="{{ route('contacts.create') }}" 
-       style="background-color:#112b80; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
-       + Ajouter contact
-    </a>
-</div>
+
 
 <!-- Barre de recherche et filtre Group -->
 <div style=" margin-bottom:20px;">
@@ -40,7 +34,6 @@
         </button>
     </form>
 </div>
-<!-- Bouton pour aller aux Groups -->
 <div style="margin-bottom:20px;">
     <a href="{{ route('groups.index') }}" 
        style="background-color:#28a745; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; margin-right:10px;">
