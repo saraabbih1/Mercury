@@ -42,7 +42,7 @@ class ContactController extends Controller
             'name'     => 'required',
             'email'    => 'required|email',
             'phone'    => 'required',
-            'group_id' => 'required|exists:groups,id'
+            'group_id' => 'required|exists:groups,id',
         ]);
 
         Contact::create($request->all());

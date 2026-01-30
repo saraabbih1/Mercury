@@ -46,7 +46,15 @@
             value="{{ old('phone', $contact->phone) }}"
             style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px; margin-bottom:15px;"
         >
-
+    <label style="display:block; margin-bottom:5px;">Groupe :</label>
+        <select name="group_id" style="width:100%; padding:8px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
+            <option value="">-- Choisir un groupe --</option>
+            @foreach($groups as $group)
+                <option value="{{ $group->id }}" {{ old('group_id', $contact->group_id) == $group->id ? 'selected' : '' }}>
+                    {{ $group->name }}
+                </option>
+            @endforeach
+        </select>
         <button 
             type="submit"
             style="background-color:#112b80; color:white; border:none; padding:10px; width:100%; border-radius:5px; cursor:pointer;"

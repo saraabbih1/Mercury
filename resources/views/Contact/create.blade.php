@@ -23,14 +23,16 @@
     <input type="text" name="phone" placeholder="Téléphone" value="{{ old('phone') }}"
            style="width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ccc;">
 
-           <select name="group_id" style="width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ccc;">
-        <option value="">-- Choisir un groupe --</option>
-        @foreach($groups as $group)
-            <option value="{{ $group->id }}" {{ old('group_id') == $group->id ? 'selected' : '' }}>
-                {{ $group->name }}
-            </option>
-        @endforeach
-    </select>
+    <select name="group_id" required
+        style="width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ccc;">
+    <option value="">-- Choisir un groupe --</option>
+    @foreach($groups as $group)
+        <option value="{{ $group->id }}" {{ old('group_id') == $group->id ? 'selected' : '' }}>
+            {{ $group->name }}
+        </option>
+    @endforeach
+</select>
+
     <button type="submit" 
             style="width:100%; padding:10px; border:none; border-radius:5px; background-color:#0d1d50; color:white; font-weight:bold; cursor:pointer;">
         Enregistrer

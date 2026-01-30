@@ -19,6 +19,12 @@
        + Ajouter un Groupe
     </a>
 </div>
+<div style="margin-bottom:20px;">
+    <a href="{{ route('contacts.index') }}" 
+       style="background-color:#0d1d50; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;">
+       Voir les Contacts
+    </a>
+</div>
 
 @if($groups->count() > 0)
 <table style="width:100%; border-collapse:collapse; text-align:left; max-width:400px; margin:auto;">

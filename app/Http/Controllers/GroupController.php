@@ -1,109 +1,74 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 use App\Models\Group;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-          $groups = Group::all();
+        $groups = Group::all();
         return view('groups.index', compact('groups'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-          return view('groups.create');
+        return view('groups.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-         $request->validate([
-            'name' => 'required'
+        $request->validate([
+            'name' => 'required|string|max:255|unique:groups,name',
         ]);
 
-        Group::create([
-            'name' => $request->name
-        ]);
+        Group::create($request->all());
 
         return redirect()->route('groups.index')
             ->with('success', 'Group créé avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-         $group = Group::findOrFail($id);
-    return view('groups.edit', compact('group'));
+        $group = Group::findOrFail($id);
+        return view('groups.edit', compact('group'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-    ]);
+    {
+        $group = Group::findOrFail($id);
 
-    $group = Group::findOrFail($id);
-    $group->update([
-        'name' => $request->name,
-    ]);
+        $request->validate([
+            'name' => 'required|string|max:255|unique:groups,name,' . $id,
+        ]);
 
-    return redirect()->route('groups.index')
-        ->with('success', 'Group modifié avec succès');
-}
+        $group->update($request->all());
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        return redirect()->route('groups.index')
+            ->with('success', 'Group modifié avec succès');
+    }
+
     public function destroy($id)
     {
-         $group = Group::findOrFail($id);
-    $group->delete();
+        $group = Group::findOrFail($id);
 
-    return redirect()->route('groups.index')
-        ->with('success', 'Group supprimé avec succès');
+        if ($group->contacts()->count() > 0) {
+            return redirect()->route('groups.index')
+                ->with('error', 'Impossible de supprimer un groupe qui contient des contacts.');
+        }
+
+        $group->delete();
+
+        return redirect()->route('groups.index')
+            ->with('success', 'Group supprimé avec succès');
+    }
+
+    public function show($id)
+    {
+        $group = Group::with('contacts')->findOrFail($id);
+        return view('groups.show', compact('group'));
     }
 }
