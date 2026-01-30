@@ -22,7 +22,7 @@ class ContactController extends Controller
 }
 
 
-        // Filtrage par search (optionnel)
+        // Filtrage par search 
         if ($request->filled('search')) {
             $request->validate(['search'=>'nullable|regex:/[A-Za-z\s]+$/']);
             $query->where('name', 'like', '%' . $request->search . '%');
